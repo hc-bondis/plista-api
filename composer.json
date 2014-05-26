@@ -1,0 +1,14 @@
+{
+	"name": "plista/api",
+	"description": "This is the API package of the framework we use here at plista. Put some more information in this line :)",
+	"authors": [
+		{
+			"name": "plista",
+			"homepage": "http://www.plista.com/"
+		}
+	],
+	"autoload": {
+		"files": ["autoload.php"]
+	}
+}
+

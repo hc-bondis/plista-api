@@ -1,0 +1,35 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: theunisjbotha
+ * Date: 14/03/14
+ * Time: 12:14
+ */
+
+namespace Plista\API\Response {
+
+	/**
+	 * Interface declarations
+	 */
+	use Plista\API\Interfaces\Response;
+
+	/**
+	 * Implemenation declarations
+	 */
+	use Plista\API\Exception;
+
+	/**
+	 * Class XML - The idea is to convert the response JSON into XML in process()
+	 * @package Plista\API\Response
+	 */
+	class XML extends Response {
+
+		/**
+		 * Convert the JSON into XML
+		 * @throws Exception
+		 */
+		public function process() {
+			throw new Exception("Implement Plista\\API\\Response\\XML::process()");
+		}
+	}
+}

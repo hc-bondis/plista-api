@@ -1,0 +1,31 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: theunisjbotha
+ * Date: 14/03/14
+ * Time: 12:13
+ */
+
+namespace Plista\API\Response {
+
+	/**
+	 * Interface declarations
+	 */
+	use \Plista\API\Interfaces\Response;
+
+	/**
+	 * Class JSON - Leaves the JSON as JSON
+	 * @package Plista\API\Response
+	 */
+	class JSON extends Response {
+
+		/**
+		 * Doesn't do anything on purpose - leaves the JSON as JSON
+		 */
+		public function process() {
+			/**
+			 * Do nothing - the data is already in JSON format
+			 */
+		}
+	}
+}

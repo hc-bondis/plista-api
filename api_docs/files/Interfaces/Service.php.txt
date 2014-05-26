@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: theunisjbotha
+ * Date: 14/03/14
+ * Time: 12:14
+ */
+
+namespace Plista\API\Interfaces {
+
+	/**
+	 * The base interface for all service services
+	 * @package Plista\API\Interfaces
+	 */
+	interface Service extends ServiceDescription {
+		/**
+		 * Generic services which should be available to ALL APIs should go here
+		 */
+	}
+}

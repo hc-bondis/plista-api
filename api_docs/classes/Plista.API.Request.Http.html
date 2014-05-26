@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Plista.html">\Plista</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-715327772"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-715327772" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-414152439"></a>
+                                <a href="../namespaces/Plista.html" style="margin-left: 30px; padding-left: 0">Plista</a>
+            </div>
+            <div id="namespace-414152439" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1986114751"></a>
+                                <a href="../namespaces/Plista.API.html" style="margin-left: 30px; padding-left: 0">API</a>
+            </div>
+            <div id="namespace-1986114751" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-232715597"></a>
+                                <a href="../namespaces/Plista.API.Interfaces.html" style="margin-left: 30px; padding-left: 0">Interfaces</a>
+            </div>
+            <div id="namespace-232715597" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Plista.API.Interfaces.Service.html">Service</a></li>
+                                                    <li class="interface"><a href="../classes/Plista.API.Interfaces.ServiceDescription.html">ServiceDescription</a></li>
+                                                                                                    <li class="class"><a href="../classes/Plista.API.Interfaces.API.html">API</a></li>
+                                                    <li class="class"><a href="../classes/Plista.API.Interfaces.Request.html">Request</a></li>
+                                                    <li class="class"><a href="../classes/Plista.API.Interfaces.Response.html">Response</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-241863026"></a>
+                                <a href="../namespaces/Plista.API.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-241863026" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Plista.API.Request.Http.html">Http</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1119293651"></a>
+                                <a href="../namespaces/Plista.API.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-1119293651" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Plista.API.Response.DataTables.html">DataTables</a></li>
+                                                    <li class="class"><a href="../classes/Plista.API.Response.JSON.html">JSON</a></li>
+                                                    <li class="class"><a href="../classes/Plista.API.Response.MySQL.html">MySQL</a></li>
+                                                    <li class="class"><a href="../classes/Plista.API.Response.StdArray.html">StdArray</a></li>
+                                                    <li class="class"><a href="../classes/Plista.API.Response.StdObject.html">StdObject</a></li>
+                                                    <li class="class"><a href="../classes/Plista.API.Response.XML.html">XML</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Plista.API.Exception.html">Exception</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Plista.API.Request.html">\Plista\API\Request</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Plista\API\Request</small>Http</h1>
+                    <p><em>The Request Object which will be sent over API.</em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Plista.API.Interfaces.Request.html#method_setCustomResponseClass" class="">setCustomResponseClass()</a><br />
+                                                                    <a href="../classes/Plista.API.Interfaces.Request.html#method_getCustomResponseClass" class="">getCustomResponseClass()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_send" class="">send()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setMethod" class="">setMethod()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getMethod" class="">getMethod()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setAuthorization" class="">setAuthorization()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setHost" class="">setHost()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getHost" class="">getHost()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getAuthorization" class="">getAuthorization()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setCharset" class="">setCharset()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getCharset" class="">getCharset()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setResponseType" class="">setResponseType()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getResponseType" class="">getResponseType()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setPath" class="">setPath()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getPath" class="">getPath()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setLanguage" class="">setLanguage()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getLanguage" class="">getLanguage()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_setUserAgent" class="">setUserAgent()</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#method_getUserAgent" class="">getUserAgent()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_responseType" class="">$responseType</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_language" class="">$language</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_charset" class="">$charset</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_host" class="">$host</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_authorization" class="">$authorization</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_userAgent" class="">$userAgent</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_data" class="">$data</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_method" class="">$method</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_cookies" class="">$cookies</a><br />
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_path" class="">$path</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Plista.API.Interfaces.Request.html#constant_RESULT_OK" class="">RESULT_OK</a><br />
+                                                                    <a href="../classes/Plista.API.Interfaces.Request.html#constant_RESULT_ERROR" class="">RESULT_ERROR</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Plista.API.Interfaces.Request.html#property_customResponseClass" class="">$customResponseClass</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Plista.API.Request.Http.html#property_url" class="">$url</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Request.Http.html"><div class="path-wrapper">Request/Http.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Plista\API\Request</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Plista.API.Interfaces.Request.html">\Plista\API\Interfaces\Request</a></div>
+                                                                                                    <div class="namespace-wrapper">\Plista\API\Request\Http</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_OK" name="constant_RESULT_OK" class="anchor"></a>
+            <article id="constant_RESULT_OK" class="constant">
+                <h3 class="">RESULT_OK</h3>
+                <pre class="signature">RESULT_OK</pre>
+                <p><em>For knowing if the request succeeded or failed</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Plista.API.Interfaces.Request.html"><div class="path-wrapper">\Plista\API\Interfaces\Request</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESULT_ERROR" name="constant_RESULT_ERROR" class="anchor"></a>
+            <article id="constant_RESULT_ERROR" class="constant">
+                <h3 class="">RESULT_ERROR</h3>
+                <pre class="signature">RESULT_ERROR</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Plista.API.Interfaces.Request.html"><div class="path-wrapper">\Plista\API\Interfaces\Request</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_responseType" name="property_responseType" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$responseType</h3>
+                <pre class="signature">$responseType</pre>
+                <p><em>The type of response, example TYPE_JSON, TYPE_ARRAY, etc.</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_language" name="property_language" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$language</h3>
+                <pre class="signature">$language</pre>
+                <p><em>The language</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_charset" name="property_charset" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$charset</h3>
+                <pre class="signature">$charset</pre>
+                <p><em>Charset of the document (UTF-8)</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_host" name="property_host" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$host</h3>
+                <pre class="signature">$host</pre>
+                <p><em>The host we&#039;re connecting to</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_authorization" name="property_authorization" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$authorization</h3>
+                <pre class="signature">$authorization</pre>
+                <p><em>Holds the authorization information</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_userAgent" name="property_userAgent" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$userAgent</h3>
+                <pre class="signature">$userAgent</pre>
+                <p><em>Holds the user agent string</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_data" name="property_data" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$data</h3>
+                <pre class="signature">$data</pre>
+                <p><em>The data we&#039;re sending</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_method" name="property_method" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$method</h3>
+                <pre class="signature">$method</pre>
+                <p><em>The HTTP method (GET, POST, etc)</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_cookies" name="property_cookies" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$cookies</h3>
+                <pre class="signature">$cookies</pre>
+                <p><em>Cookies we&#039;ll send</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_path" name="property_path" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$path</h3>
+                <pre class="signature">$path</pre>
+                <p><em>Path of the URL we&#039;re connecting to</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_customResponseClass" name="property_customResponseClass" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$customResponseClass</h3>
+                <pre class="signature">$customResponseClass</pre>
+                <p><em>Set this equal to a &quot;ClassName&quot; string which implements Plista\API\Interfaces\Response.</em></p>
+                <p>In the process() function of this class, convert the JSON into your ClassName object(s)</p>
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Plista.API.Interfaces.Request.html"><div class="path-wrapper">\Plista\API\Interfaces\Request</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_url" name="property_url" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$url</h3>
+                <pre class="signature">$url</pre>
+                <p><em>The URL we&#039;re connecting to</em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCustomResponseClass" name="method_setCustomResponseClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCustomResponseClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCustomResponseClass(mixed <span class="argument">$className</span>) : mixed</pre>
+                <p><em>Sets the classname to which the JSON response will be converted to</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$className </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Plista.API.Interfaces.Request.html"><div class="path-wrapper">\Plista\API\Interfaces\Request</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCustomResponseClass" name="method_getCustomResponseClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCustomResponseClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCustomResponseClass() : mixed</pre>
+                <p><em>Returns the name of the class to which your response JSON will be converted to</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Plista.API.Interfaces.Request.html"><div class="path-wrapper">\Plista\API\Interfaces\Request</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(mixed <span class="argument">$host</span>, mixed <span class="argument">$path</span>, mixed <span class="argument">$__options</span>)</pre>
+                <p><em>Construct a default Request object</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$host </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$__options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_send" name="method_send" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">send()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">send() : mixed|null|\Plista\API\Response\DataTables|\Plista\API\Response\MySQL|\Plista\API\Response\StdArray|\Plista\API\Response\StdObject</pre>
+                <p><em>Send the Request via HTTP to the endpoint.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Plista\API\Exception</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    mixed|null|<a href="../classes/Plista.API.Response.DataTables.html">\Plista\API\Response\DataTables</a>|<a href="../classes/Plista.API.Response.MySQL.html">\Plista\API\Response\MySQL</a>|<a href="../classes/Plista.API.Response.StdArray.html">\Plista\API\Response\StdArray</a>|<a href="../classes/Plista.API.Response.StdObject.html">\Plista\API\Response\StdObject</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMethod" name="method_setMethod" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setMethod()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setMethod(mixed <span class="argument">$method</span>)</pre>
+                <p><em>Sets the request method</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$method </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMethod" name="method_getMethod" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMethod()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMethod() : mixed</pre>
+                <p><em>Gets the request method</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAuthorization" name="method_setAuthorization" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAuthorization()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setAuthorization(mixed <span class="argument">$authorization</span>)</pre>
+                <p><em>Sets the authorization object</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$authorization </td>
+                                <td><p>string</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setHost" name="method_setHost" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setHost()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setHost(mixed <span class="argument">$host</span>)</pre>
+                <p><em>Sets the host</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$host </td>
+                                <td><p>string</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHost" name="method_getHost" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getHost()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHost() : string</pre>
+                <p><em>Gets the host</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the target host of the endpoint</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAuthorization" name="method_getAuthorization" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAuthorization()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAuthorization() : string</pre>
+                <p><em>Gets the authorization object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCharset" name="method_setCharset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCharset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCharset(mixed <span class="argument">$charset</span>)</pre>
+                <p><em>Sets the charset</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$charset </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCharset" name="method_getCharset" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCharset()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCharset() : mixed</pre>
+                <p><em>Gets the charset</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setResponseType" name="method_setResponseType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setResponseType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setResponseType(mixed <span class="argument">$format</span>)</pre>
+                <p><em>Sets the format</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$format </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getResponseType" name="method_getResponseType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getResponseType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getResponseType() : mixed</pre>
+                <p><em>Gets the format</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPath" name="method_setPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPath(mixed <span class="argument">$path</span>)</pre>
+                <p><em>Sets the path</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPath" name="method_getPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPath() : mixed</pre>
+                <p><em>Gets the path</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLanguage" name="method_setLanguage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLanguage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLanguage(mixed <span class="argument">$language</span>)</pre>
+                <p><em>Sets the language</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$language </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLanguage" name="method_getLanguage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLanguage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLanguage() : mixed</pre>
+                <p><em>Gets the language</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setUserAgent" name="method_setUserAgent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setUserAgent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setUserAgent(mixed <span class="argument">$userAgent</span>)</pre>
+                <p><em>Sets the user agent string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$userAgent </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUserAgent" name="method_getUserAgent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUserAgent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUserAgent() : mixed</pre>
+                <p><em>Gets the user agent string</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Http.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Request/Http.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Plista.html">\Plista</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on May 26th, 2014 at 16:42.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

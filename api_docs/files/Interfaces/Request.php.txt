@@ -1,0 +1,66 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: theunisjbotha
+ * Date: 14/03/14
+ * Time: 12:14
+ */
+
+namespace Plista\API\Interfaces {
+
+	/**
+	 * The Request Object which will be sent over API.
+	 * @package Plista\API\Interfaces
+	 */
+	abstract class Request {
+
+		/**
+		 * For knowing if the request succeeded or failed
+		 */
+		const RESULT_OK		= 1;
+		const RESULT_ERROR	= 0;
+
+		/**
+		 * Set this equal to a "ClassName" string which implements Plista\API\Interfaces\Response.
+		 * In the process() function of this class, convert the JSON into your ClassName object(s)
+		 * @var
+		 */
+		protected $customResponseClass = null;
+
+		/**
+		 * Sets the classname to which the JSON response will be converted to
+		 * @param $className
+		 * @return mixed
+		 */
+		public function setCustomResponseClass($className) {
+			$this->customResponseClass = $className;
+		}
+
+		/**
+		 * Returns the name of the class to which your response JSON will be converted to
+		 * @return mixed
+		 */
+		public function getCustomResponseClass() {
+			return $this->customResponseClass;
+		}
+
+
+		/**
+		 * All Requests will connect to a host, action, and have options
+		 * @param $host
+		 * @param $path
+		 * @param $options
+		 */
+		abstract public function __construct(
+			$host,
+			$path,
+			$options
+		);
+
+		/**
+		 * All requests should be able to 'send()'
+		 * @return mixed
+		 */
+		abstract public function send();
+	}
+}
