@@ -13,7 +13,7 @@ The https://github.com/plista/statistics-dev package depends on this package
 ###Installation
 
  1. Clone the package into a folder where PHP expects your classes to reside.
- 2. Include the autoloader.php file in your code, before you intend to use the StatisticsAPI class.
+ 2. Include the autoloader.php file in your code, before you intend to use classes which could depend on these classes.
 
 ####Finding the correct location to clone your package
 
