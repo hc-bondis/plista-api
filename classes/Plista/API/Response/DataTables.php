@@ -27,6 +27,7 @@ namespace Plista\API\Response{
 		/**
 		 * Converts the JSON into JSON ready for Datatables
 		 * @throws Exception
+		 * @todo Implement Plista\API\Response\DataTables::process()
 		 */
 		public function process() {
 			throw new Exception("Implement Plista\\API\\Response\\DataTables::process()");
