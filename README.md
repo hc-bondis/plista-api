@@ -51,4 +51,4 @@ include_once("plista-api/autoloader.php");
 
 At this point, when you include the above line of code early in you application startup, you will have access to all the Plista API Core classes.
 
-In some cases, you could use these classes directly, but in other cases, when you are using the #statistics-dev package - the classes will be used without you being aware of it.
+In some cases, you could use these classes directly, but in other cases, when you are using for example the https://github.com/plista/statistics-dev package - the classes will be used without you being aware of it.
