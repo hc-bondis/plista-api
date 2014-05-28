@@ -94,9 +94,14 @@ namespace Plista\API\Interfaces {
 		 * with the first 'data' request, which will succeed if the right credentials were supplied.
 		 *
 		 * The responseType is the ultimate format of the response "data" member which you receive from the request.
-		 * By default it is a JSON string, but could be an Array, or a PHP standard Object, or MySQL query.
+		 * By default it is a JSON string, but could be an Array, PHP standard Object, MySQL query, or some
+		 * Custom types.
 		 *
-		 * More types could become available
+		 * When the responseType is set to Response::TYPE_CUSTOM, you need to specify a $customResponseClass
+		 * string name.  This $customResponseClass class must extend the abstract Response class, and provide
+		 * a process() implementation which should convert the JSON into an object. This helps other developers
+		 * by explicitly declaring the response classes and their members and you have the opportunity to document
+		 * your response objects, and also helps when you are coding in an IDE.
 		 *
 		 * When you authorize successfully - you receive an API token in the header which you can use for further requests.
 		 *
@@ -120,9 +125,11 @@ namespace Plista\API\Interfaces {
 		 * 	"responseType" => Response::TYPE_JSON (0) |
 		 * 			  Response::TYPE_ARRAY (1) |
 		 * 			  Response::TYPE_STD_OBJECT (2) |
-		 *			  Response::TYPE_MYSQL (3)
-		 *
-		 * )
+		 *			  Response::TYPE_MYSQL (3) |
+		 *			  Response::TYPE_DATATABLES (4) |
+		 *			  Response::TYPE_XML (5) |
+		 *			  Response::TYPE_CUSTOM (6)
+		 *)
 		 */
 		function __construct(
 			$baseUrl = null,

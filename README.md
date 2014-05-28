@@ -1,4 +1,4 @@
-##plista GmBH API Core Package for PHP
+##plista GmbH API Core Package for PHP
 
 This package is the core API package which are used by plista API Development packages
 
