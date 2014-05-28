@@ -1,0 +1,4 @@
+#!/bin/bash
+#
+#This file just gets the classes as a list so we can copy / paste easily into the autoloader
+find . -name "*.php" | sed 's/\//\\/g' | sed 's/.php//' | sed "s/\.\\\\classes\\\\/'/" | sed "s/$/',/" | grep "Plista"
