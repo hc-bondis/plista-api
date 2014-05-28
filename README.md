@@ -52,3 +52,27 @@ include_once("plista-api/autoloader.php");
 At this point, when you include the above line of code early in you application startup, you will have access to all the Plista API Core classes.
 
 In some cases, you could use these classes directly, but in other cases, when you are using for example the https://github.com/plista/statistics-dev package - the classes will be used without you being aware of it.
+
+###Namespaces
+
+All the classes live inside Plista namespaces - so they should not interfere with other classes.
+
+When you want to use a class - be sure to include a ``use Plista\Namespace\Declaration\ClassName``
+
+Below is a definitive list of all Plista API Classes and their Namespaces
+
+```
+Plista\API\Interfaces\Response
+Plista\API\Interfaces\ServiceDescription
+Plista\API\Interfaces\API
+Plista\API\Interfaces\Request
+Plista\API\Interfaces\Service
+Plista\API\Exception
+Plista\API\Request\Http
+Plista\API\Response\StdArray
+Plista\API\Response\DataTables
+Plista\API\Response\XML
+Plista\API\Response\JSON
+Plista\API\Response\MySQL
+Plista\API\Response\StdObject
+```
