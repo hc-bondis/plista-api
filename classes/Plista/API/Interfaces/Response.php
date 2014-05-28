@@ -62,18 +62,37 @@ namespace Plista\API\Interfaces {
 		 * @param $result
 		 * @param $data
 		 * @param $info
-		 * @param null $stackTrace	(stacktrace in event of request error)
+		 * @param null $stackTrace
+		 * @param $statusCode
 		 */
 		public function __construct(
 			$result,
 			$data,
 			$info,
-			$stackTrace = null
+			$stackTrace = null,
+			$statusCode
 		) {
 			$this->result		= $result;
 			$this->data		= $data;
 			$this->info		= $info;
 			$this->stackTrace	= $stackTrace;
+			$this->statusCode	= $statusCode;
+		}
+
+		/**
+		 * Gets the result
+		 * @return mixed
+		 */
+		public function getResult() {
+			return $this->result;
+		}
+
+		/**
+		 * Sets the result
+		 * @param $result
+		 */
+		public function setResult($result) {
+			$this->result = $result;
 		}
 
 		/**
@@ -93,19 +112,19 @@ namespace Plista\API\Interfaces {
 		}
 
 		/**
-		 * Gets the status code
+		 * Gets the info
 		 * @return mixed
 		 */
-		public function getStatusCode() {
-			return $this->statusCode;
+		public function getinfo() {
+			return $this->info;
 		}
 
 		/**
-		 * Sets the status code
-		 * @param $statusCode
+		 * Sets the info
+		 * @param $info
 		 */
-		public function setStatusCode($statusCode) {
-			$this->statusCode = $statusCode;
+		public function setInfo($info) {
+			$this->info = $info;
 		}
 
 		/**
@@ -122,6 +141,22 @@ namespace Plista\API\Interfaces {
 		 */
 		public function getStackTrace() {
 			return $this->stackTrace;
+		}
+
+		/**
+		 * Gets the status code
+		 * @return mixed
+		 */
+		public function getStatusCode() {
+			return $this->statusCode;
+		}
+
+		/**
+		 * Sets the status code
+		 * @param $statusCode
+		 */
+		public function setStatusCode($statusCode) {
+			$this->statusCode = $statusCode;
 		}
 
 		/**
