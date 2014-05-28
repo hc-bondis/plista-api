@@ -2,7 +2,7 @@
 
 This package is the core API package which are used by plista API Development packages
 
-### equirements
+### Requirements
 
 This package works on PHP 5.5 but will probably work on most other PHP versions
 
