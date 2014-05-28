@@ -439,6 +439,7 @@ namespace Plista\API\Request {
 			$stackTrace	= null;
 			$info		= null;
 			$data		= null;
+			$statusCode	= 0;
 
 			$jsonData	= null;
 			$headers	= null;
@@ -490,6 +491,7 @@ namespace Plista\API\Request {
 				setcookie("api_token", $apiToken, $timeout, "/", $domain, false);
 
 			}
+
 			/**
 			 * Log the curl request in 'dev' environment
 			 */
@@ -540,8 +542,6 @@ namespace Plista\API\Request {
 			 */
 			curl_close($ch);
 
-
-
 			/**
 			 * We will now create the response
 			 */
@@ -559,14 +559,16 @@ namespace Plista\API\Request {
 				/**
 				 * The API request succeeded, but some error occurred
 				 */
+				$info["message"] = $rawData["message"];
+
 				$response = new StdArray(
 					$result,
 					$jsonData,
 					$info,
-					$stackTrace
+					$stackTrace,
+					$statusCode
 				);
 
-				$response["info"]["message"] = $rawData["message"];
 				return $response;
 			}
 
@@ -579,7 +581,8 @@ namespace Plista\API\Request {
 						$result,
 						$jsonData,
 						$info,
-						$stackTrace
+						$stackTrace,
+						$statusCode
 					);
 					break;
 				case Response::TYPE_STD_OBJECT :
@@ -587,7 +590,8 @@ namespace Plista\API\Request {
 						$result,
 						$jsonData,
 						$info,
-						$stackTrace
+						$stackTrace,
+						$statusCode
 					);
 					break;
 				case Response::TYPE_MYSQL :
@@ -595,7 +599,8 @@ namespace Plista\API\Request {
 						$result,
 						$jsonData,
 						$info,
-						$stackTrace
+						$stackTrace,
+						$statusCode
 					);
 					break;
 				case Response::TYPE_DATATABLES :
@@ -603,7 +608,8 @@ namespace Plista\API\Request {
 						$result,
 						$jsonData,
 						$info,
-						$stackTrace
+						$stackTrace,
+						$statusCode
 					);
 					break;
 				case Response::TYPE_XML :
@@ -611,7 +617,8 @@ namespace Plista\API\Request {
 						$result,
 						$jsonData,
 						$info,
-						$stackTrace
+						$stackTrace,
+						$statusCode
 					);
 					break;
 				case Response::TYPE_CUSTOM :
@@ -630,7 +637,8 @@ namespace Plista\API\Request {
 							$result,
 							$jsonData,
 							$info,
-							$stackTrace
+							$stackTrace,
+							$statusCode
 						);
 					} catch (\Exception $e) {
 						throw new Exception($e->getMessage());
@@ -641,7 +649,8 @@ namespace Plista\API\Request {
 						$result,
 						$jsonData,
 						$info,
-						$stackTrace
+						$stackTrace,
+						$statusCode
 					);
 			}
 
