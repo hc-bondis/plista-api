@@ -57,7 +57,7 @@ In some cases, you could use these classes directly, but in other cases, when yo
 
 All the classes live inside Plista namespaces - so they should not interfere with other classes.
 
-When you want to use a class - be sure to include a ``use Plista\Namespace\Declaration\ClassName``
+When you want to use a class - be sure to include a ``use Plista\Namespace\Declaration\ClassName;``
 
 Below is a definitive list of all Plista API Classes and their Namespaces
 
