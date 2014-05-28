@@ -8,6 +8,8 @@ This package works on PHP 5.5 but will probably work on most other PHP versions
 
 ### Dependencies
 
+This package does not depend on any other packages.
+
 The https://github.com/plista/statistics-dev package depends on this package
 
 ### Installation
