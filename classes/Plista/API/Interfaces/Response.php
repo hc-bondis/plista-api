@@ -112,10 +112,11 @@ namespace Plista\API\Interfaces {
 		}
 
 		/**
-		 * Gets the info
+		 * Returns an array with lots of useful information about the request.
+		 * What exactly, depends on the Request implementation.
 		 * @return mixed
 		 */
-		public function getinfo() {
+		public function getInfo() {
 			return $this->info;
 		}
 
