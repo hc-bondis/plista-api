@@ -21,7 +21,10 @@ class PlistaAPIAutoloader {
 		'Plista\API\Response\StdObject'
 	);
 
-
+	/**
+	 * This function autoloads the class if its namespace mapping exists and matches a class in our array
+	 * @param $className
+	 */
 	public static function load($className) {
 
 		$className = ltrim($className, '\\');
