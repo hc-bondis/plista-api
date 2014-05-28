@@ -529,7 +529,8 @@ namespace Plista\API\Request {
 					"requestSize"	=> $requestSize,
 					"downloadSize"	=> $downloadSize,
 					"uploadSize"	=> $uploadSize,
-					"contentType"	=> $contentType
+					"contentType"	=> $contentType,
+					"message"	=> "OK"
 				);
 
 			}
@@ -538,6 +539,8 @@ namespace Plista\API\Request {
 			 * Close the curl handle
 			 */
 			curl_close($ch);
+
+
 
 			/**
 			 * We will now create the response
@@ -563,7 +566,7 @@ namespace Plista\API\Request {
 					$stackTrace
 				);
 
-				$response->info["message"] = $rawData["message"];
+				$response["info"]["message"] = $rawData["message"];
 				return $response;
 			}
 
