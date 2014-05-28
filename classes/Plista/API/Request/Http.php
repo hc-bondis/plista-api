@@ -545,6 +545,29 @@ namespace Plista\API\Request {
 			$response = null;
 
 			/**
+			 * Do a quick check if any errors occurred server side
+			 */
+			$rawData = json_decode($jsonData, true);
+			if (
+				is_array($rawData) &&
+				isset($rawData["result"]) &&
+				!$rawData["result"]
+			) {
+				/**
+				 * The API request succeeded, but some error occurred
+				 */
+				$response = new StdArray(
+					$result,
+					$jsonData,
+					$info,
+					$stackTrace
+				);
+
+				$response->info["message"] = $rawData["message"];
+				return $response;
+			}
+
+			/**
 			 * Do we create a standard JSON response, or process the data some more?
 			 */
 			switch ($this->responseType) {
