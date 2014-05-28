@@ -1,21 +1,21 @@
-##plista GmBH API Core Package for PHP
+## plista GmBH API Core Package for PHP
 
 This package is the core API package which are used by plista API Development packages
 
-###Requirements
+### equirements
 
 This package works on PHP 5.5 but will probably work on most other PHP versions
 
-###Dependencies
+### Dependencies
 
 The https://github.com/plista/statistics-dev package depends on this package
 
-###Installation
+### Installation
 
  1. Clone the package into a folder where PHP expects your classes to reside.
  2. Include the autoloader.php file in your code, before you intend to use classes which could depend on these classes.
 
-####Finding the correct location to clone your package
+#### Finding the correct location to clone your package
 
 To figure out where PHP expects your files, you could execute this function in php:
 ```php
@@ -33,7 +33,7 @@ In my case - the correct location is /usr/share/php/ so I change into that direc
 cd /usr/share/php
 ```
 
-####Cloning the package
+#### Cloning the package
 
 If you are now in the correct location to clone your package - do that
 
@@ -43,7 +43,7 @@ sudo git clone https://github.com/plista/plista-api.git
 
 If everything goes well, you should have a brand new plista-api folder created, with all the required files inside.
 
-####Including the autoloader.php
+#### Including the autoloader.php
 
 ```php
 include_once("plista-api/autoloader.php");
