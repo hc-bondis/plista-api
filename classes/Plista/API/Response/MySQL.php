@@ -40,7 +40,7 @@ namespace Plista\API\Response {
 			 *
 			 * @var array $data
 			 */
-			$data = json_decode($this->data, true);
+			$data = json_decode($this->getData(), true);
 
 			/**
 			 * Get keys from first row of data set

@@ -23,7 +23,7 @@ namespace Plista\API\Response {
 		 * Converts JSON into a standard PHP object
 		 */
 		public function process() {
-			$this->data = json_decode($this->data, false);
+			$this->data = json_decode($this->getData(), false);
 		}
 	}
 }

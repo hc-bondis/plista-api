@@ -23,7 +23,7 @@ namespace Plista\API\Response {
 		 * Convert the JSON data into an Array
 		 */
 		public function process() {
-			$this->data = json_decode($this->data, true);
+			$this->data = json_decode($this->getData(), true);
 		}
 	}
 }
