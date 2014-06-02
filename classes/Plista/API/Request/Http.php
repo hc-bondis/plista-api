@@ -436,7 +436,7 @@ namespace Plista\API\Request {
 			 * We have a result
 			 */
 			$result		= Request::RESULT_OK;
-			$stackTrace	= null;
+			$error		= null;
 			$info		= null;
 			$data		= null;
 			$statusCode	= 0;
@@ -454,7 +454,7 @@ namespace Plista\API\Request {
 			} catch (\Exception $e){
 				$jsonData = null;
 				$result = Request::RESULT_ERROR;
-				$stackTrace = $e->getTrace();
+				$error = $e->getTrace();
 			}
 
 			/**
@@ -558,7 +558,28 @@ namespace Plista\API\Request {
 				 */
 				$info["message"] = $rawData["message"];
 
+				/**
+				 * Check if we have error info
+				 */
+				$error = null;
+				if (isset($rawData["error"])) {
+					$error = $rawData["error"];
+				}
+
+				/**
+				 * We will create a default response
+				 */
 				$response = new StdArray();
+
+				/**
+				 * Set some info on the response object
+				 */
+				$response->setResult($result);
+				$response->setData($jsonData);
+				$response->setInfo($info);
+				$response->setError($error);
+				$response->setStatusCode($statusCode);
+				$response->setAPIToken($apiToken);
 
 				return $response;
 			}
@@ -609,7 +630,7 @@ namespace Plista\API\Request {
 			$response->setResult($result);
 			$response->setData($jsonData);
 			$response->setInfo($info);
-			$response->setStackTrace($stackTrace);
+			$response->setError($error);
 			$response->setStatusCode($statusCode);
 			$response->setAPIToken($apiToken);
 

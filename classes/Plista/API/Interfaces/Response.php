@@ -36,7 +36,7 @@ namespace Plista\API\Interfaces {
 		 * Holds debugging information - however not yet implemented
 		 * @var
 		 */
-		private $stackTrace;
+		private $error;
 
 		/**
 		 * Status code of the request response
@@ -68,7 +68,7 @@ namespace Plista\API\Interfaces {
 		 * @param int $result
 		 * @param null $data
 		 * @param null $info
-		 * @param null $stackTrace
+		 * @param null $error
 		 * @param int $statusCode
 		 * @param null $apiToken
 		 */
@@ -76,15 +76,16 @@ namespace Plista\API\Interfaces {
 			$result = 1,
 			$data = null,
 			$info = null,
-			$stackTrace = null,
+			$error = null,
 			$statusCode = 0,
 			$apiToken = null
 		) {
 			$this->result		= $result;
 			$this->data		= $data;
 			$this->info		= $info;
-			$this->stackTrace	= $stackTrace;
+			$this->error		= $error;
 			$this->statusCode	= $statusCode;
+			$this->apiToken		= $apiToken;
 		}
 
 		/**
@@ -137,19 +138,19 @@ namespace Plista\API\Interfaces {
 		}
 
 		/**
-		 * Sets the stack trace
-		 * @param $stackTrace
+		 * Sets the error information
+		 * @param $error
 		 */
-		public function setStackTrace($stackTrace) {
-			$this->stackTrace = $stackTrace;
+		public function setError($error) {
+			$this->error = $error;
 		}
 
 		/**
 		 * Gets the stack trace
 		 * @return mixed
 		 */
-		public function getStackTrace() {
-			return $this->stackTrace;
+		public function getError() {
+			return $this->error;
 		}
 
 		/**
