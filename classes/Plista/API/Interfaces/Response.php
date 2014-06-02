@@ -18,31 +18,37 @@ namespace Plista\API\Interfaces {
 		 * The result of the request - 1 if success, 0 if failure
 		 * @var int
 		 */
-		protected $result;
+		private $result;
 
 		/**
 		 * Holds the JSON string of the response
 		 * @var string
 		 */
-		protected $data;
+		private $data;
 
 		/**
 		 * Holds lots of request info, like status code, time etc.
 		 * @var
 		 */
-		protected $info;
+		private $info;
 
 		/**
 		 * Holds debugging information - however not yet implemented
 		 * @var
 		 */
-		protected $stackTrace;
+		private $stackTrace;
 
 		/**
 		 * Status code of the request response
 		 * @var int
 		 */
-		protected $statusCode;
+		private $statusCode;
+
+		/**
+		 * API Token when you successfully authenticate
+		 * @var string
+		 */
+		private $apiToken;
 
 		/**
 		 * Types of Responses we can / will handle
@@ -59,18 +65,20 @@ namespace Plista\API\Interfaces {
 
 		/**
 		 * The Response Constructor
-		 * @param $result
-		 * @param $data
-		 * @param $info
+		 * @param int $result
+		 * @param null $data
+		 * @param null $info
 		 * @param null $stackTrace
-		 * @param $statusCode
+		 * @param int $statusCode
+		 * @param null $apiToken
 		 */
 		public function __construct(
-			$result,
-			$data,
-			$info,
+			$result = 1,
+			$data = null,
+			$info = null,
 			$stackTrace = null,
-			$statusCode
+			$statusCode = 0,
+			$apiToken = null
 		) {
 			$this->result		= $result;
 			$this->data		= $data;
@@ -158,6 +166,22 @@ namespace Plista\API\Interfaces {
 		 */
 		public function setStatusCode($statusCode) {
 			$this->statusCode = $statusCode;
+		}
+
+		/**
+		 * Gets the API Token
+		 * @return string
+		 */
+		public function getAPIToken() {
+			return $this->apiToken;
+		}
+
+		/**
+		 * Sets the API Token
+		 * @param $apiToken
+		 */
+		public function setAPIToken($apiToken) {
+			$this->apiToken = $apiToken;
 		}
 
 		/**

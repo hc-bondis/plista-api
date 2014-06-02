@@ -441,6 +441,7 @@ namespace Plista\API\Request {
 			$data		= null;
 			$statusCode	= 0;
 
+			$apiToken	= null;
 			$jsonData	= null;
 			$headers	= null;
 			$response	= null;
@@ -464,16 +465,13 @@ namespace Plista\API\Request {
 				$headers = preg_replace("/(^.*?)\r\n\r\n.*/s", "$1", $response);
 			}
 
-			/**
-			 * See if we have an API token we're supposed to set
-			 */
-			$apiToken = null;
-
 			if (preg_match("/.*Set-Cookie:.*api_token=(.*?);.*/msi", $headers)) {
-				$apiToken = preg_replace("/.*Set-Cookie:.*api_token=(.*?);.*/msi","$1", $headers);
+				$apiToken = urldecode(preg_replace("/.*Set-Cookie:.*api_token=(.*?);.*/msi","$1", $headers));
 			}
-			//$apiToken = "d8wweGU9Xbk0zMUMqCqTpIdzCkwubEmMT2hbez5JcP4kJPaF9FjH75Jw%2Bg1WWRbmmsZXYyV%2FVYqwAClO5rdqaigd9eIfwCZQfUvGz6aQPcoc3B%2FOSp9USkUEq9Xxsi4%2Fyso%3D";
 
+			/**
+			 * If we get an API token, set it as COOKIE on browser too
+			 */
 			if ($apiToken) {
 				/**
 				 * API token timeout is ten minutes (ok one second less because it expires in redis)
@@ -489,7 +487,6 @@ namespace Plista\API\Request {
 				 * Also set a token
 				 */
 				setcookie("api_token", $apiToken, $timeout, "/", $domain, false);
-
 			}
 
 			/**
@@ -561,13 +558,7 @@ namespace Plista\API\Request {
 				 */
 				$info["message"] = $rawData["message"];
 
-				$response = new StdArray(
-					$result,
-					$jsonData,
-					$info,
-					$stackTrace,
-					$statusCode
-				);
+				$response = new StdArray();
 
 				return $response;
 			}
@@ -577,49 +568,19 @@ namespace Plista\API\Request {
 			 */
 			switch ($this->responseType) {
 				case Response::TYPE_ARRAY :
-					$response = new StdArray(
-						$result,
-						$jsonData,
-						$info,
-						$stackTrace,
-						$statusCode
-					);
+					$response = new StdArray();
 					break;
 				case Response::TYPE_STD_OBJECT :
-					$response = new StdObject(
-						$result,
-						$jsonData,
-						$info,
-						$stackTrace,
-						$statusCode
-					);
+					$response = new StdObject();
 					break;
 				case Response::TYPE_MYSQL :
-					$response = new MySQL(
-						$result,
-						$jsonData,
-						$info,
-						$stackTrace,
-						$statusCode
-					);
+					$response = new MySQL();
 					break;
 				case Response::TYPE_DATATABLES :
-					$response = new DataTables(
-						$result,
-						$jsonData,
-						$info,
-						$stackTrace,
-						$statusCode
-					);
+					$response = new DataTables();
 					break;
 				case Response::TYPE_XML :
-					$response = new XML(
-						$result,
-						$jsonData,
-						$info,
-						$stackTrace,
-						$statusCode
-					);
+					$response = new XML();
 					break;
 				case Response::TYPE_CUSTOM :
 
@@ -633,26 +594,24 @@ namespace Plista\API\Request {
 					 * Create a new Custom Response object
 					 */
 					try {
-						$response = new $className(
-							$result,
-							$jsonData,
-							$info,
-							$stackTrace,
-							$statusCode
-						);
+						$response = new $className();
 					} catch (\Exception $e) {
 						throw new Exception($e->getMessage());
 					}
 					break;
 				default:
-					$response = new JSON(
-						$result,
-						$jsonData,
-						$info,
-						$stackTrace,
-						$statusCode
-					);
+					$response = new JSON();
 			}
+
+			/**
+			 * Set some info on the response object
+			 */
+			$response->setResult($result);
+			$response->setData($jsonData);
+			$response->setInfo($info);
+			$response->setStackTrace($stackTrace);
+			$response->setStatusCode($statusCode);
+			$response->setAPIToken($apiToken);
 
 			/**
 			 * Process the response data into proper format
