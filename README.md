@@ -78,3 +78,54 @@ Plista\API\Response\JSON
 Plista\API\Response\MySQL
 Plista\API\Response\StdObject
 ```
+
+###Error handling
+When an error occurs on the platform to which you are making an API call, the error should be converted into understandable JSON.
+
+In some circumstances, it is not possible to properly convert the error information into understandable JSON, because of the nature of some types of errors.
+
+In most cases however, when an error occurs, your response object should contain the following information:
+
+####When an exception occurs
+
+```php
+$result = $api->getCampaignStatistics(...);
+
+/**
+ * Now an Exception occurs on the server, you can get error information like this
+ */
+
+$error = $result->getError();
+
+/**
+ * $error is an Array with the following information :
+ */
+
+$error = array(
+	"hash" => "..."		// A random generated string which you can send us to track down the error
+	"message" => "..."	// A message indicating an error occurred
+);
+
+```
+####When an internal error occurs
+
+```php
+$result = $api->getCampaignStatistics(...);
+
+/**
+ * Now an internal error occurs on the server, unfortunately, there is not much helpful info
+ */
+
+$error = $result->getError();
+
+/**
+ * $error is an Array with the following information :
+ */
+
+$error = array(
+	"result" => 0
+	"message" => "Internal Server Error"
+);
+
+We would however receive a message, indicating that an error occurred and we will check it out. However, feel free to create an Issue on GitHub or contact us mailto:info@plista.com ;)
+```
