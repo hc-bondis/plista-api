@@ -466,7 +466,7 @@ namespace Plista\API\Request {
 			}
 
 			if (preg_match("/.*Set-Cookie:.*api_token=(.*?);.*/msi", $headers)) {
-				$apiToken = urldecode(preg_replace("/.*Set-Cookie:.*api_token=(.*?);.*/msi","$1", $headers));
+				$apiToken = preg_replace("/.*Set-Cookie:.*api_token=(.*?);.*/msi","$1", $headers);
 			}
 
 			/**
@@ -486,7 +486,7 @@ namespace Plista\API\Request {
 				/**
 				 * Also set a token
 				 */
-				setcookie("api_token", $apiToken, $timeout, "/", $domain, false);
+				setrawcookie("api_token", $apiToken, $timeout, "/", $domain, false);
 			}
 
 			/**
@@ -585,16 +585,24 @@ namespace Plista\API\Request {
 			}
 
 			if (!$rawData) {
+
+				/**
+				 * We will create a default response
+				 */
+				$response = new StdArray();
+
 				/**
 				 * We have bad data from server - probably some internal error occurred, but
 				 * we cannot debug it in a nice way - so dump the data
 				 */
 				$response->setResult(Request::RESULT_ERROR);
-				$response->setData('{result : false, message : "Fatal Error", error : "' + htmlentities($jsonData) + '"');
+				$response->setData('{result : false, message : "Fatal Error", error : "' . urlencode($jsonData). '"');
 				$response->setInfo($info);
 				$response->setError(
 					array(
-						"rawData" => htmlentities($jsonData)
+						'result' => 0,
+						'message' => 'Internal Fatal Error',
+						'rawData' => urlencode($jsonData)
 					)
 				);
 				$response->setStatusCode($statusCode);
