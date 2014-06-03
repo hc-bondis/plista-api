@@ -79,6 +79,20 @@ Plista\API\Response\MySQL
 Plista\API\Response\StdObject
 ```
 
+###Response Objects
+The response objects all have certain private members which are accessible via their accessor functions:
+
+```php
+$response = $api->getCampaignStatistics(...);
+
+$response->getResult();		//0 for failure, 1 for success
+$response->getData();		//returns the raw JSON data
+$response->getInfo();		//returns some interesting information about the request - time it took, size of the request, speeds, etc.
+$response->getError();		//gets an error message and hash code for tracking down bugs
+$response->getStatusCode();	//200 = success, 403 = access denied, 500 = internal server error, etc.
+$response->getAPIToken();	//returns the API token which you received by logging in.
+```
+
 ###Error handling
 When an error occurs on the platform to which you are making an API call, the error should be converted into understandable JSON.
 
@@ -89,13 +103,13 @@ In most cases however, when an error occurs, your response object should contain
 ####When an exception occurs
 
 ```php
-$result = $api->getCampaignStatistics(...);
+$response = $api->getCampaignStatistics(...);
 
 /**
  * Now an Exception occurs on the server, you can get error information like this
  */
 
-$error = $result->getError();
+$error = $response->getError();
 
 /**
  * $error is an Array with the following information :
@@ -110,13 +124,13 @@ $error = array(
 ####When an internal error occurs
 
 ```php
-$result = $api->getCampaignStatistics(...);
+$response = $api->getCampaignStatistics(...);
 
 /**
  * Now an internal error occurs on the server, unfortunately, there is not much helpful info
  */
 
-$error = $result->getError();
+$error = $response->getError();
 
 /**
  * $error is an Array with the following information :
@@ -126,6 +140,6 @@ $error = array(
 	"result" => 0
 	"message" => "Internal Server Error"
 );
+```
 
 We would however receive a message, indicating that an error occurred and we will check it out. However, feel free to create an Issue on GitHub or contact us mailto:info@plista.com ;)
-```
