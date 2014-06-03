@@ -327,18 +327,6 @@ namespace Plista\API\Request {
 			}
 
 			/**
-			 * If we have an API token, we have to unset the user email and password
-			 * We unset the password because it is not wise to send the password with every request
-			 * We unset the email because the token contains the email address with which the request
-			 * was authenticated. We unset the token because the user can also login with his token
-			 */
-			if (isset($this->authorization["api_token"])) {
-				//	unset($this->authorization["user_email"]);
-				//	unset($this->authorization["user_token"]);
-				unset($this->authorization["user_password"]);
-			}
-
-			/**
 			 * JSON encode this object
 			 */
 			$data = json_encode($this);
