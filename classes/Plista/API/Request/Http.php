@@ -554,11 +554,6 @@ namespace Plista\API\Request {
 				!$rawData["result"]
 			) {
 				/**
-				 * The API request succeeded, but some error occurred
-				 */
-				$info["message"] = $rawData["message"];
-
-				/**
 				 * Check if we have error info
 				 */
 				$error = null;
@@ -574,7 +569,7 @@ namespace Plista\API\Request {
 				/**
 				 * Set some info on the response object
 				 */
-				$response->setResult($result);
+				$response->setResult(Request::RESULT_ERROR);
 				$response->setData($jsonData);
 				$response->setInfo($info);
 				$response->setError($error);
@@ -596,13 +591,12 @@ namespace Plista\API\Request {
 				 * we cannot debug it in a nice way - so dump the data
 				 */
 				$response->setResult(Request::RESULT_ERROR);
-				$response->setData('{result : false, message : "Fatal Error", error : "' . urlencode($jsonData). '"');
+				$response->setData('{result : false, message : "Internal Server Error"');
 				$response->setInfo($info);
 				$response->setError(
 					array(
 						'result' => 0,
-						'message' => 'Internal Fatal Error',
-						'rawData' => urlencode($jsonData)
+						'message' => 'Internal Server Error'
 					)
 				);
 				$response->setStatusCode($statusCode);
