@@ -584,6 +584,25 @@ namespace Plista\API\Request {
 				return $response;
 			}
 
+			if (!$rawData) {
+				/**
+				 * We have bad data from server - probably some internal error occurred, but
+				 * we cannot debug it in a nice way - so dump the data
+				 */
+				$response->setResult(Request::RESULT_ERROR);
+				$response->setData('{result : false, message : "Fatal Error", error : "' + htmlentities($jsonData) + '"');
+				$response->setInfo($info);
+				$response->setError(
+					array(
+						"rawData" => htmlentities($jsonData)
+					)
+				);
+				$response->setStatusCode($statusCode);
+				$response->setAPIToken($apiToken);
+
+				return $response;
+			}
+
 			/**
 			 * Do we create a standard JSON response, or process the data some more?
 			 */
