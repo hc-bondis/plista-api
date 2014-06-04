@@ -130,7 +130,7 @@ namespace Plista\API\Request {
 				"path"		=> $path,
 				"authorization"	=> null,
 				"data"		=> null,
-				"userAgent"	=> $_SERVER['HTTP_USER_AGENT'],
+				"userAgent"	=> isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:null,
 				"language"	=> "en",
 				"type"		=> "api",
 				"url"		=> $host . $path,
