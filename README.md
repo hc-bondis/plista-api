@@ -45,6 +45,10 @@ sudo git clone https://github.com/plista/plista-api.git
 
 If everything goes well, you should have a brand new plista-api folder created, with all the required files inside.
 
+#### Documentation
+
+Full documentation lies at https://statistics.plista.com/api_docs/index.html
+
 #### Including the autoloader.php
 
 ```php
