@@ -117,13 +117,15 @@ In the example below - lets say we will be receiving some JSON representing some
 use Plista\API\Interfaces\Response;
 
 /**
- * By extending the Response interface, we can access the raw JSON data via $this->getData();
+ * By extending the Response interface, we can access the raw JSON data 
+ * via $this->getData();
  */
 class PizzaResponse extends Response {
 
 	/**
-	 * We can declare any member variables here, and because all the other member variables
-	 * are private, they can even have the same names as declared in the abstract Response class
+	 * We can declare any member variables here, and because alli the other member 
+	 * variables are private, they can even have the same names as declared in the
+	 * abstract Response class
 	 */
 
 	/**
@@ -143,7 +145,8 @@ class PizzaResponse extends Response {
 	...
 
 	/**
-	 * We also have to provide an implementation for the process() function, which essentially just converts the JSON
+	 * We also have to provide an implementation for the process() function, which
+	 * essentially just converts the JSON
 	 * into the type of object you just declared.
 	 */
 	public function process()
