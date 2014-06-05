@@ -196,6 +196,54 @@ Simple as that!
 
 At some point you probably want to create a new API based on the plista-api core, because, lets say we get a new idea and want to make some part of Plista available via API.
 
+You have to extend
+
+```
+plista-api/classes/Plista/API/Interfaces/API.php
+```
+
+and provide and implementation for ``listCalls()`` function which returns an array with some info about your API.
+
+A good idea would also be to provide a 'Service' interface which lists the functions available in your API.
+
+So your class signature would look like this :
+
+```php
+
+use \Plista\API\Interfaces\API;
+
+interface Service {
+	public function getPizza($id);
+}
+
+/**
+ * extend the API and declare a custom Service interface
+ */
+class PizzaAPI extends API implements Service {
+	
+	/**
+	 * Provide implementation for listCalls()
+	 */
+	public function listCalls() {
+		//return some info about your API
+	}
+
+	/**
+	 * Provide implementation for getPizza()
+	 */
+	public function getPizza($id) {
+		return $this->call(
+			"/pizzas/get/$id"
+		);
+	}
+}
+
+```
+
+The constructor for your API expects a URL to which the ``call()`` function will append its arguments
+
+The second argument to ``call()`` is an optional array of 'key' => 'value' pairs, which will be converted into JSON POST payload.
+
 ###Custom Request Classes
 
 At the moment we only support the HTTP request method. We could theoretically support any type of request - such as websocket requests, FTP request, SMTP requests and so on.
@@ -214,6 +262,8 @@ Store your class at
 and remember to update the ```plista-api/autoloader.php``` with the path to your request object.
 
 You will have to provide an implementation for ```send()``` function - which should be blocking and return a Response object which extends ```Plista\API\Interfaces\Response.php```
+
+You also will have to extend the API interface and override the 'call()' method to use your new request. 
 
 ###Error handling
 When an error occurs on the platform to which you are making an API call, the error should be converted into understandable JSON.
