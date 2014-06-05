@@ -204,7 +204,14 @@ In order to extend the API to support more than one request - simply extend the 
 plista-api/classes/Plista/API/Interfaces/Request.php
 ```
 
-You will have to provide an implementation for ``send()`` function - which should be blocking and return a Response object which extends Plista\API\Interfaces\Response.php
+Store your class at
+```
+/usr/share/php/plista-api/classes/Plista/API/Request
+```
+
+and remember to update the ```plista-api/autoloader.php``` with the path to your request object.
+
+You will have to provide an implementation for ```send()``` function - which should be blocking and return a Response object which extends ```Plista\API\Interfaces\Response.php```
 
 ###Error handling
 When an error occurs on the platform to which you are making an API call, the error should be converted into understandable JSON.
