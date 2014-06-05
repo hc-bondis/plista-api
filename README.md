@@ -261,7 +261,7 @@ When you create a new API package - its best to store it in a seperate package w
 │   └── Plista
 │       └── Pizza
 │           ├── API
-│           │   └── PizzsAPI.php
+│           │   └── PizzaAPI.php
 │           ├── Interfaces
 │           │   └── Service.php
 │           ├── Request
