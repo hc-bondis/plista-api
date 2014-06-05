@@ -123,7 +123,7 @@ use Plista\API\Interfaces\Response;
 class PizzaResponse extends Response {
 
 	/**
-	 * We can declare any member variables here, and because alli the other member 
+	 * We can declare any member variables here, and because all the other member 
 	 * variables are private, they can even have the same names as declared in the
 	 * abstract Response class
 	 */
@@ -189,6 +189,22 @@ Now that we have declared our 'Custom Response Object' class, we should tell our
 ``` 
 
 Simple as that!
+
+###Custom API Classes (mainly relevant to Plista internal)
+
+At some point you probably want to create a new API based on the plista-api core, because, lets say we get a new idea and want to make some part of Plista available via API.
+
+###Custom Request Classes
+
+At the moment we only support the HTTP request method. We could theoretically support any type of request - such as websocket requests, FTP request, SMTP requests and so on.
+
+In order to extend the API to support more than one request - simply extend the interface at 
+
+```
+plista-api/classes/Plista/API/Interfaces/Request.php
+```
+
+You will have to provide an implementation for ``send()`` function - which should be blocking and return a Response object which extends Plista\API\Interfaces\Response.php
 
 ###Error handling
 When an error occurs on the platform to which you are making an API call, the error should be converted into understandable JSON.
