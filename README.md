@@ -253,6 +253,29 @@ The constructor for your API expects a URL to which the ``call()`` function will
 
 The second argument to ``call()`` is an optional array of 'key' => 'value' pairs, which will be converted into JSON POST payload.
 
+When you create a new API package - its best to store it in a seperate package with the following folder structure:
+
+```bash
+├── autoloader.php
+├── classes
+│   └── Plista
+│       └── Pizza
+│           ├── API
+│           │   └── PizzsAPI.php
+│           ├── Interfaces
+│           │   └── Service.php
+│           ├── Request
+│           │   └── ... #your request implementations
+│           ├── ... #folders are named after the interfaces they extend
+│           └── Response
+│               └── PizzaResponse.php
+└── README.md
+```
+
+Because not everyone interested in Statistics API is also interested in the Pizza API, its best to create seperate packages
+
+You will also have to provide your own autoloader.
+
 ###Custom Request Classes
 
 At the moment we only support the HTTP request method. We could theoretically support any type of request - such as websocket requests, FTP request, SMTP requests and so on.
