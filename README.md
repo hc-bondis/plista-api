@@ -188,6 +188,8 @@ Now that we have declared our 'Custom Response Object' class, we should tell our
 		... //and so on
 ``` 
 
+Store your response object in ``plista-api/classes/Plista/API/Response`` and remember to include your response class in the ``plista-api/autoloader.php``
+
 Simple as that!
 
 ###Custom API Classes (mainly relevant to Plista internal)
