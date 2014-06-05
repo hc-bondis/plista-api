@@ -213,7 +213,16 @@ So your class signature would look like this :
 use \Plista\API\Interfaces\API;
 
 interface Service {
+	
+	/**
+	 * Returns a pizza with name and ingredients
+	 * @param int $id of the pizza
+	 */
 	public function getPizza($id);
+
+	...
+
+	//and so on
 }
 
 /**
