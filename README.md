@@ -97,6 +97,96 @@ $response->getStatusCode();	//200 = success, 403 = access denied, 500 = internal
 $response->getAPIToken();	//returns the API token which you received by logging in.
 ```
 
+Lets say - that you will be getting some JSON from one of our servers, and you wish to convert this JSON into an object which is more suited to your needs.
+
+In this case - you should consider creating a 'Custom Response Object'.
+
+If you want to create your own 'Custom Response Objects' - you should extend the 'Response' interface living in
+
+```bash
+plista-api/classes/Plista/API/Interfaces/Response.php
+```
+
+When you extend from this class, you automatically inherit the functions above, plus you are free to declare any member variables you wish, and you have to provide an implementation for the ``process()`` function
+
+In the example below - lets say we will be receiving some JSON representing some Pizza information (types of Pizza and so on) - and we want to convert these into Pizza objects. 
+####Custom Response Object Example####
+
+```php
+
+use Plista\API\Interfaces\Response;
+
+/**
+ * By extending the Response interface, we can access the raw JSON data via $this->getData();
+ */
+class PizzaResponse extends Response {
+
+	/**
+	 * We can declare any member variables here, and because all the other member variables
+	 * are private, they can even have the same names as declared in the abstract Response class
+	 */
+
+	/**
+	 * The name of the Pizza
+	 * @var string $name
+	 */
+	public $name;
+	
+	/**
+	 * An array of strings representing the ingredients for this pizza
+	 * @var array $ingredients
+	 */
+	public $ingredients
+
+	...
+	// and so on
+	...
+
+	/**
+	 * We also have to provide an implementation for the process() function, which essentially just converts the JSON
+	 * into the type of object you just declared.
+	 */
+	public function process()
+	{
+		/**
+		 * Convert the JSON data into an Array
+		 */
+		$data = json_decode($this->getData(), true);
+
+		$this->name = $data["name"];
+
+		$this->ingredients = array();
+
+		foreach ($data["ingredients"] as $ingredient) {
+			array_push($this->ingredients, $ingredient)
+		}
+
+		...
+		// and so on
+	}
+}
+```
+
+Now that we have declared our 'Custom Response Object' class, we should tell our API which type of 'Custom Response Object' we expect from the call:
+
+```
+	$api = new PizzaAPI();	//An API Class which extends the plista-api/classes/Plista/API/Interfaces/API.php
+	
+	$api->setCustomResponseClass("PizzaResponse");
+
+	$response = $api->getPizza(0);
+
+	/**
+	 * Now - at this point $response is an object of class "PizzaResponse" declared above
+	 */
+	echo $response->name;	//outputs the name of the pizza
+
+	foreach ($response->ingredients as $ingredient) {
+		... //and so on
+``` 
+
+Simple as that!
+
 ###Error handling
 When an error occurs on the platform to which you are making an API call, the error should be converted into understandable JSON.
 
