@@ -53,23 +53,6 @@ namespace Plista\API\Interfaces {
 		protected $customResponseClass = null;
 
 		/**
-		 * Sets the classname to which the JSON response will be converted to
-		 * @param $className
-		 * @return mixed
-		 */
-		public function setCustomResponseClass($className) {
-			$this->customResponseClass = $className;
-		}
-
-		/**
-		 * Returns the name of the class to which your response JSON will be converted to
-		 * @return mixed
-		 */
-		public function getCustomResponseClass() {
-			return $this->customResponseClass;
-		}
-
-		/**
 		 * The "authorization" array in $options is optional, and required when you are not making API
 		 * calls from within a 'plista' platform.
 		 *
@@ -339,6 +322,49 @@ namespace Plista\API\Interfaces {
 			}
 
 			return null;
+		}
+
+		/**
+		 * Sets the classname to which the JSON response will be converted to
+		 * @param $className
+		 * @return mixed
+		 */
+		public function setCustomResponseClass($className) {
+			$this->responseType = Response::TYPE_CUSTOM;
+			$this->customResponseClass = $className;
+		}
+
+		/**
+		 * Returns the name of the class to which your response JSON will be converted to
+		 * @return mixed
+		 */
+		public function getCustomResponseClass() {
+			return $this->customResponseClass;
+		}
+
+		/**
+		 * Sets the Response Type for built-in type of responses
+		 * @param $responseType (
+		 * 	Response::TYPE_JSON		|
+		 * 	Response::TYPE_MYSQL		|
+		 * 	Response::TYPE_ARRAY		|
+		 * 	ResponsE::TYPE_STD_OBJECT	|
+		 * 	Response::TYPE_MYSQL		|
+		 * 	Response::TYPE_DATATABLES	|
+		 * 	Response::TYPE_XML		|
+		 * 	Response::TYPE_CUSTOM
+		 * )
+		 */
+		public function setResponseType($responseType) {
+			$this->responseType = $responseType;
+		}
+
+		/**
+		 * Returns the current response type
+		 * @return Response
+		 */
+		public function getResponseType() {
+			return $this->responseType;
 		}
 	}
 }
